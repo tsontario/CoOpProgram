@@ -13,25 +13,12 @@ import Model.*;
 public class MainFrame {
 
     public static void main(String[] args) {
+        // Top level entry point to program
         final Controller controller = new Controller();
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createGUI();
-            }
-        });
-        final Model model = new Model();
+        controller.start();
     }
 
     private static void createGUI() {
-        // Initial GUI setup
-        JFrame frame = new JFrame("Welcome to Classdoor! Your one-stop Coop shop!");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        WelcomePanel panel = new WelcomePanel();
-
-        frame.setContentPane(panel);
-
-        frame.pack();
-        frame.setVisible(true);
     }
 }
