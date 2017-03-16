@@ -9,8 +9,13 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by timothysmith on 2017-03-15.
+ * Top-Level controller for CoOp program. This controller is designed to hold references to the
+ * controller for the current view as well.
  */
 public class Controller extends AbstractController {
+
+    // The current view (except for main menu).
+    AbstractController currentController;
 
     public void start() {
         SwingUtilities.invokeLater(new Runnable() {
@@ -27,13 +32,12 @@ public class Controller extends AbstractController {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel masterPanel = new WelcomePanel();
-
-
         frame.add(masterPanel, BorderLayout.CENTER);
 
         frame.setSize(new Dimension(800, 600));
         frame.setVisible(true);
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

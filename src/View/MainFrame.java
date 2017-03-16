@@ -17,8 +17,4 @@ public class MainFrame {
         final Controller controller = new Controller();
         controller.start();
     }
-
-    private static void createGUI() {
-
-    }
 }
