@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 public class Controller extends AbstractController {
 
     // The current view (except for main menu).
-    AbstractController currentController;
+    AbstractController controller;
 
     public void start() {
         SwingUtilities.invokeLater(new Runnable() {
@@ -26,20 +26,13 @@ public class Controller extends AbstractController {
         final Model model = new Model();
     }
 
+    // Top-level initFrame constructs welcome-screen
     protected void initFrame() {
-        // Initial GUI setup
-        JFrame frame = new JFrame("Welcome to Classdoor! Your one-stop Coop shop!");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel masterPanel = new WelcomePanel();
-        frame.add(masterPanel, BorderLayout.CENTER);
-
-        frame.setSize(new Dimension(800, 600));
-        frame.setVisible(true);
+        setController(new WelcomeController());
+        controller.initFrame();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    private void setController(AbstractController controller) {
+        this.controller = controller;
     }
 }
