@@ -10,25 +10,31 @@ import java.awt.event.ActionEvent;
  * Created by timothysmith on 2017-03-17.
  */
 public class WelcomeController extends AbstractController {
+    AbstractController parent;
+    JPanel view;
 
-
-    @Override
-    protected void initFrame() {
+    private void initFrame() {
         JFrame frame = new JFrame("Welcome to Classdoor! Your one-stop Coop shop!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel masterPanel = new WelcomePanel(this);
-        frame.add(masterPanel, BorderLayout.CENTER);
+        view = new WelcomePanel(this);
+        frame.add(view, BorderLayout.CENTER);
 
         frame.setSize(new Dimension(800, 600));
         frame.setVisible(true);
     }
 
     public void userLogIn() {
-        System.out.println("COMMUNICATION SUCCESSFUL!");
+        view.setVisible(false);
+        parent.initFrame(new UserLogInController(), parent);
     }
 
     public void exit() {
         System.exit(0);
+    }
+
+    protected void initFrame(AbstractController controller, AbstractController parent) {
+        this.parent = parent;
+        initFrame();
     }
 }

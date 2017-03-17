@@ -14,22 +14,21 @@ import java.awt.event.ActionListener;
  */
 public class Controller extends AbstractController {
 
-    // The current view (except for main menu).
     AbstractController controller;
 
     public void start() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                initFrame();
+                initFrame(new WelcomeController(), null);
             }
         });
         final Model model = new Model();
     }
 
-    // Top-level initFrame constructs welcome-screen
-    protected void initFrame() {
-        setController(new WelcomeController());
-        controller.initFrame();
+    // Top-level initFrame
+    protected void initFrame(AbstractController controller, AbstractController parent) {
+        setController(controller);
+        controller.initFrame(controller, this);
     }
 
     private void setController(AbstractController controller) {
